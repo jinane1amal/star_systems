@@ -218,4 +218,18 @@ ggplot(systems, aes(x = temperature)) +
        y = "Frequency") +
   theme_minimal()
 ```
+## Question 18
+```{r  warning=FALSE}  
+# Create a scatter plot
+ggplot(systems, aes(x = harvard_letter, y = harvard_digit, color = harvard_letter, size = harvard_digit)) +
+  geom_point(alpha = 0.7) +
+  scale_color_manual(values = rainbow(length(unique(systems$harvard_letter)))) +
+  labs(title = "Distribution of Stars by Temperature Class and Magnitude",
+       x = "Harvard Letter",
+       y = "Harvard Digit",
+       color = "Temperature Class",
+       size = "Harvard Digit")
+
+```
+```
 
