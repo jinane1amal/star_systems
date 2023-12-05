@@ -15,7 +15,38 @@ library(tidyr)
 library(ggplot2)
 library (stringr)
 library(knitr)
+library(readr)
 ```
 
 You'll find [here](https://github.com/jinane1amal/star_systems.git) the link to my github sample test
+
+## Question 3
+
+```{r}
+systems <- vroom("all-systems.csv")
+str("all-systems.csv")
+```
+
+```{r}
+# Check the number of star systems and variables
+num_systems <- nrow(systems)
+num_variables <- ncol(systems)
+# Define columns with comma-separated values that need to be converted to numeric
+comma_columns <- c( "Mass", "Star Luminosity", "relative radius")
+
+
+numeric_columns <- c("STAR_KEY", "Distance (Lightyears)", "temperature", "Mass", "Star Luminosity", "relative radius")
+numeric_verification <- sapply(systems[, numeric_columns, drop = FALSE], is.numeric)
+numerical_check <- sapply(system, is.numeric)
+all_numerical <- all(numerical_check)
+if (num_systems == 1039 && num_variables == 8 && all_numerical) {
+  cat("Data loaded successfully.")
+} else {
+  cat("Error: There is an issue with the loading process.")
+}
+
+# Display summary statistics
+summary(systems)
+
+```
 
