@@ -125,5 +125,15 @@ extreme_systems
 Control <- vroom("System_control.csv")
 faction <- vroom("factions.csv")
 ```
+## Question 9
+
+```{r}
+faction_table <- faction %>%
+  filter(fkey %in% c("A", "I", "U")) %>%
+  group_by(fkey) %>%
+  summarise(Number_of_Star_Systems = n())
+knitr::kable(faction_table)
+```
+
 
 
