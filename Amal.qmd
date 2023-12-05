@@ -155,3 +155,58 @@ cat("Number of star systems not found in System_control.csv:", num_missing_syste
 
 ```
 So,the Number of star systems not found in System_control.csv is `r num_missing_systems` stars systems.
+
+## Question 11
+
+```{r faction-control-plot, echo=FALSE, warning=FALSE, message=FALSE}
+
+faction_control_plot_data <- faction %>%
+  filter(!is.na(`Name Of The Faction`)) %>%
+  group_by(`Name Of The Faction`) %>%
+  summarise(Num_Systems = n()) %>%
+  filter(Num_Systems > 0)
+
+ggplot(faction_control_plot_data, aes(x = `Name Of The Faction`, y = Num_Systems)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Number of Star Systems Controlled by Each Faction",
+       x = "Faction",
+       y = "Number of Star Systems") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 0.7))
+
+```
+
+
+
+## Question 12
+```{r}
+systems|>
+filter(!is.na(`Name Of The Faction`) & !(`Name Of The Faction` %in% c("A", "I", "U"))) %>%
+  filter(!is.na(`Distance (Lightyears)`)) %>%
+  ggplot(aes(x = `Name Of The Faction`, y = `Distance (Lightyears)`)) +
+  geom_boxplot(fill = "skyblue") +
+  labs(title = "Distance to the Sun of Star Systems by Controlling Faction",
+       x = "Faction",
+       y = "Distance to the Sun (Lightyears)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+ 
+## Question 15
+```{r}
+types <- vroom("star_types.csv")
+
+```
+
+
+## Question 16
+```{r}
+
+systems <- systems %>%
+  separate(col=`Star Type`, into = c("harvard_letter", "harvard_digit", "yerkes_class"), sep ="\\-")
+head(systems)
+
+```
+
