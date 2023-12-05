@@ -179,17 +179,23 @@ ggplot(faction_control_plot_data, aes(x = `Name Of The Faction`, y = Num_Systems
 
 
 ## Question 12
+
 ```{r}
-systems|>
-filter(!is.na(`Name Of The Faction`) & !(`Name Of The Faction` %in% c("A", "I", "U"))) %>%
-  filter(!is.na(`Distance (Lightyears)`)) %>%
-  ggplot(aes(x = `Name Of The Faction`, y = `Distance (Lightyears)`)) +
-  geom_boxplot(fill = "skyblue") +
+filtered_faction <- faction %>%
+  filter(!fkey %in% c("A", "I", "U"))
+
+# Step 2: Merge systems with Control based on STAR KEY
+merged_data <- systems %>%
+  left_join(Control, by = "STAR_KEY") %>%
+  left_join(filtered_faction, by = "fkey")
+
+ggplot(merged_data, aes(x = faction, y = `Distance (Lightyears)`)) +
   labs(title = "Distance to the Sun of Star Systems by Controlling Faction",
        x = "Faction",
        y = "Distance to the Sun (Lightyears)") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 ```
 
 
@@ -231,5 +237,10 @@ ggplot(systems, aes(x = harvard_letter, y = harvard_digit, color = harvard_lette
        size = "Harvard Digit")
 
 ```
+## Question 19:
+```{r}
+
 ```
+
+
 
