@@ -77,3 +77,15 @@ So, we have a situation where number of systems is `r num_systems` and the numbe
 
 ## Question 5
 
+```{r luminosity-mass-plot, echo=FALSE, warning=FALSE}
+
+# Create a scatter plot of luminosity against mass
+ggplot(systems, aes(x = Mass, y = `Star Luminosity`)) +
+  geom_point() +
+  labs(title = "Luminosity vs Mass of Stars",
+       x = "Mass ",
+       y = "Star Luminosity ") +
+  theme_minimal()
+
+```
+
