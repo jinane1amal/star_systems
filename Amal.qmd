@@ -119,10 +119,11 @@ extreme_systems
 
 ```
 
-## Question 7
+## Question 8
 
 ```{r}
-
+Control <- vroom("System_control.csv")
+faction <- vroom("factions.csv")
 ```
 
 
