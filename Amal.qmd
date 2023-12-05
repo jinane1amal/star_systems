@@ -1,0 +1,18 @@
+---
+title: "Star_systems"
+author: "Jinane AMAL"
+format: html
+editor: visual
+---
+
+```{r}
+#| message: false
+here::i_am("star_systems.Rproj")
+library(here)
+library(vroom)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library (stringr)
+library(knitr)
+```
