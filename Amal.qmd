@@ -197,7 +197,6 @@ filter(!is.na(`Name Of The Faction`) & !(`Name Of The Faction` %in% c("A", "I", 
 ## Question 15
 ```{r}
 types <- vroom("star_types.csv")
-
 ```
 
 
@@ -208,5 +207,15 @@ systems <- systems %>%
   separate(col=`Star Type`, into = c("harvard_letter", "harvard_digit", "yerkes_class"), sep ="\\-")
 head(systems)
 
+```
+## Question 17 
+
+```{r temperature-distribution-plot, echo=FALSE, warning=FALSE, message=FALSE}
+ggplot(systems, aes(x = temperature)) +
+  geom_histogram(binwidth = 100, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Temperature Distribution of Stars",
+       x = "Temperature (Kelvin)",
+       y = "Frequency") +
+  theme_minimal()
 ```
 
