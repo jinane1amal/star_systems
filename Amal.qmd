@@ -50,3 +50,30 @@ summary(systems)
 
 ```
 
+## Question 4
+
+```{r}
+
+missing_values <- colSums(is.na(systems))
+sum_missing_values <- sum(missing_values)
+
+num_observations_with_missing <- sum(apply(systems, 1, anyNA))
+
+summary_table <- data.frame(
+  Metric = c("Number of Observations", "Number of Variables", "Number of Missing Values", "Number of Observations with Missing Values"),
+  Value = c(num_systems, num_variables, sum(missing_values), num_observations_with_missing)
+)
+
+cat("| Metric | Value |\n")
+cat("|--------|-------|\n")
+cat(sprintf("| Number of Observations | %d |\n", num_systems))
+cat(sprintf("| Number of Variables | %d |\n", num_variables))
+cat(sprintf("| Number of Missing Values | %d |\n", sum_missing_values))
+cat(sprintf("| Number of Observations with Missing Values | %d |\n", num_observations_with_missing))
+knitr::kable(summary_table)
+```
+
+So, we have a situation where number of systems is `r num_systems` and the number of variables which we can observe is `r num_variables`. We thus have `r sum_missing_values ` missing values in the table in `r num_observations_with_missing` lines.
+
+## Question 5
+
