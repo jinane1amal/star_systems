@@ -137,3 +137,21 @@ knitr::kable(faction_table)
 
 
 
+## Question 10
+
+```{r missing-star-systems, results='asis'}
+
+
+# Assuming 'fkey' is the common key between faction and system_control_data
+# Replace 'fkey' with the actual key column name in your datasets
+missing_systems <- faction %>%
+  anti_join(Control, by = "fkey")
+
+# Get the number of missing star systems
+num_missing_systems <- nrow(missing_systems)
+
+# Print the number in the document
+cat("Number of star systems not found in System_control.csv:", num_missing_systems)
+
+```
+So,the Number of star systems not found in System_control.csv is `r num_missing_systems` stars systems.
