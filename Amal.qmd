@@ -34,7 +34,6 @@ num_variables <- ncol(systems)
 # Define columns with comma-separated values that need to be converted to numeric
 comma_columns <- c( "Mass", "Star Luminosity", "relative radius")
 
-
 numeric_columns <- c("STAR_KEY", "Distance (Lightyears)", "temperature", "Mass", "Star Luminosity", "relative radius")
 numeric_verification <- sapply(systems[, numeric_columns, drop = FALSE], is.numeric)
 numerical_check <- sapply(system, is.numeric)
@@ -86,6 +85,44 @@ ggplot(systems, aes(x = Mass, y = `Star Luminosity`)) +
        x = "Mass ",
        y = "Star Luminosity ") +
   theme_minimal()
+```
+## Question 6
+
+
+```{r extreme-stars-table, results='asis'}
+systems_full_filtered <- systems %>%
+  filter(!is.na(`STAR_KEY`) & 
+         !is.na(`temperature`) & 
+         !is.na(`Distance (Lightyears)`) & 
+         !is.na(`Star Luminosity`) & 
+         !is.na(`relative radius`) & 
+         !is.na(`Mass`))
 
 ```
+                                                             
+```{r}
+extreme_systems <- systems_full_filtered %>%
+  summarise(
+    most_distant_star = S_name[which.max(`Distance (Lightyears)`)],
+    closest_star = S_name[which.min(`Distance (Lightyears)`)],
+    hottest_star = S_name[which.max(`temperature`)],
+    coolest_star = S_name[which.min(`temperature`)],
+    largest_star = S_name[which.max(`relative radius`)],
+    smallest_star = S_name[which.min(`relative radius`)],
+    heaviest_star = S_name[which.max(`Mass`)],
+    lightest_star = S_name[which.min(`Mass`)],
+    brightest_star = S_name[which.max(`Star Luminosity`)],
+    dimmest_star = S_name[which.min(`Star Luminosity`)]
+  )
+
+extreme_systems
+
+```
+
+## Question 7
+
+```{r}
+
+```
+
 
